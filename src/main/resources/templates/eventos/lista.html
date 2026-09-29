@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos - Lista</title>
+</head>
+<body>
+    <h1>Lista de Eventos Acadêmicos</h1>
+    <br>
+    <a th:href="@{/eventos/novo}">Adicionar novo evento</a>
+    <br>
+    <table border="1">
+        <thead>
+        <tr bgcolor="#eee8aa">
+            <th>ID</th>
+            <th>Título</th>
+            <th>Responsável</th>
+            <th>Tipo</th>
+            <th>Número de Vagas</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="evento : ${eventos}">
+            <td th:text="${evento.id}"></td>
+            <td th:text="${evento.titulo}"></td>
+            <td th:text="${evento.responsavel}"></td>
+            <td th:text="${evento.tipo}"></td>
+            <td th:text="${evento.numeroVagas}"></td>
+            <td th:text="${evento.status}"></td>
+            <td>
+                <a th:href="@{/eventos/{id}(id=${evento.id})}">Detalhar</a>
+
+                <form th:if="${evento.status.name() ==  'PLANEJADO'}"
+                      th:action="@{/eventos/{id}/abrir(id=${evento.id})}"
+                method="post" style="display: inline">
+                    <button type="submit">Abrir inscrições</button>
+
+                </form>
+
+
+                <form th:if="${evento.status.name() ==  'INSCRICOES_ABERTAS'}"
+                      th:action="@{/eventos/{id}/encerrar(id=${evento.id})}"
+                      method="post" style="display: inline">
+                    <button type="submit">Encerrar</button>
+
+                </form>
+
+
+                <form th:if="${evento.status.name() ==  'INSCRICOES_ABERTAS'
+                                or evento.status.name() == 'PLANEJADO'}"
+                      th:action="@{/eventos/{id}/cancelar(id=${evento.id})}"
+                      method="post" style="display: inline">
+                    <button type="submit">Cancelar</button>
+
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
