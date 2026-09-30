@@ -5,6 +5,43 @@
     <title>Eventos - Formulário</title>
 </head>
 <body>
+    <h1>Formulário</h1>
+    <form th:action="@{/eventos}" th:object="${evento}" method="post">
+        <label>Título</label>
+        <input type="text" th:field="*{titulo}">
+        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+        <br>
 
+        <label>Descrição</label>
+        <input type="text" th:field="*{descricao}">
+        <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+        <br>
+
+        <label>Responsável</label>
+        <input type="text" th:field="*{responsavel}">
+        <span th:if="${#fields.hasErrors('responsavel')}" th:errors="*{responsavel}"></span>
+        <br>
+
+        <label>E-mail</label>
+        <input type="email" th:field="*{emailResponsavel}">
+        <span th:if="${#fields.hasErrors('emailResponsavel')}" th:errors="*{emailResponsavel}"></span>
+        <br>
+
+        <label>Tipo</label>
+        <select th:field="*{tipo}">
+            <option value="">Selecione</option>
+            <option th:each="item : ${tipo}" th:value="${item}" th:text="${item}"></option>
+        </select>
+        <span th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
+        <br>
+
+        <label>Número de vagas</label>
+        <input type="text" th:field="*{numeroVagas}">
+        <span th:if="${#fields.hasErrors('numeroVagas')}" th:errors="*{numeroVagas}"></span>
+        <br>
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
 </body>
 </html>

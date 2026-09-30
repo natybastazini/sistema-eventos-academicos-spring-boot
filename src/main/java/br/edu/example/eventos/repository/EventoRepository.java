@@ -22,7 +22,6 @@ public class EventoRepository {
 
     }
 
-    // metodo para fazer o id
     public void salvar(Evento evento) {
 
         evento.setId(contador++); // preciso setar o id e adicionar o contador
@@ -48,6 +47,5 @@ public class EventoRepository {
     }
 
 
-
-
 }
+

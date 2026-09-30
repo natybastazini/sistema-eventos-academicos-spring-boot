@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.events.Event;
 
 @Controller
 @RequestMapping("/eventos")
@@ -85,7 +86,5 @@ public class EventoController {
         return "redirect:/eventos";
 
     }
-
-
 
 }
